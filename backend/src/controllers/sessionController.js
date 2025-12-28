@@ -102,9 +102,16 @@ export async function joinSession(req , res){
         if(!session){
             return res.status(404).json({message : "Session not found"})
         }
+        if(session.status !== "active"){
+            return res.status(400).json({message : "Session is not active"})
+        }
+
+        if(session.host.toString() === userId.toString()){
+            return res.status(400).json({message : "You are the host of this session"})
+        }
         // check if the session is already full , ie s a participant
         if(session.participant){
-            return res.status(400).json({message : "Session is already full"})
+            return res.status(409).json({message : "Session is already full"})
         }
         // add the participant to the session
         session.participant = userId;
@@ -141,9 +148,6 @@ export async function endSession(req , res){
             return res.status(400).json({message : "Session already ended"})
         }
 
-        session.status = "completed";
-        await session.save();
-
         // delete the stream video call 
         const call = streamClient.video.call("default" , session.callId);
         await call.delete({hard : true}); 
@@ -151,6 +155,9 @@ export async function endSession(req , res){
         // delete the stream video call 
         const channel = chatClient.channel("messaging" , session.callId);
         await channel.delete();
+
+        session.status = "completed";
+        await session.save();
 
         res.status(200).json({session , message : "Session ended successfully"})
     }catch(error){

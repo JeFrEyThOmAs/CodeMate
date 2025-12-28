@@ -8,6 +8,7 @@ import { inngest , functions } from './lib/innjest.js';
 import {clerkMiddleware} from "@clerk/express";
 import { protectRoute } from './middleware/protectRoute.js';
 import chatRoutes from './routes/chatRoutes.js';
+import sessionRoutes from './routes/sessionRoutes.js';
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(cors({
 app.use(clerkMiddleware())   // this adds auth field to the req , so req.auth() 
 app.use("/api/inngest" , serve({client:inngest, functions}))
 app.use("/api/chats" , chatRoutes);
+app.use("/api/sessions" , sessionRoutes)
 
 
 // app.get("/" , (req,res) => {
@@ -40,21 +42,26 @@ app.get("/video-calls" , protectRoute , (req , res) => {
     console.log(req.user)
 })
 
-// if(ENV.NODE_ENV === "production") {
-//     app.use(express.static(path.join(__dirname, "../frontend/dist")))
-//     app.get("/{*any}", (req, res) => {
-//         res.sendFile(path.join(__dirname, "../frontend","dist","index.html"))
-//     })
-// }
-if (ENV.NODE_ENV === "production") {
-    const frontendPath = path.join(process.cwd(), "frontend/dist");
 
-    app.use(express.static(frontendPath));
-
+// development
+if(ENV.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")))
     app.get("/{*any}", (req, res) => {
-        res.sendFile(path.join(frontendPath, "index.html"));
-    });
+        res.sendFile(path.join(__dirname, "../frontend","dist","index.html"))
+    })
 }
+
+
+// deployment 
+// if (ENV.NODE_ENV === "production") {
+//     const frontendPath = path.join(process.cwd(), "frontend/dist");
+
+//     app.use(express.static(frontendPath));
+
+//     app.get("/{*any}", (req, res) => {
+//         res.sendFile(path.join(frontendPath, "index.html"));
+//     });
+// }
 
 
 const startServer = async() => {

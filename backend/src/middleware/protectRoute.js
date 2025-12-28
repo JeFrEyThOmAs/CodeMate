@@ -17,6 +17,8 @@ export const protectRoute = [
       // attach user to req
       req.user = user;
 
+
+      
       next();
     } catch (error) {
       console.error("Error in protectRoute middleware", error);

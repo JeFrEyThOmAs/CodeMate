@@ -1,6 +1,7 @@
 import { Code2, Clock, Users, Trophy, Loader } from "lucide-react";
 import { getDifficultyBadgeClass } from "../lib/utils";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isValid } from "date-fns";
+
 
 function RecentSessions({ sessions, isLoading }) {
   return (
@@ -61,11 +62,19 @@ function RecentSessions({ sessions, isLoading }) {
                   <div className="space-y-2 text-sm opacity-80 mb-4">
                     <div className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      <span>
+                      {/* <span>
                         {formatDistanceToNow(new Date(session.createdAt), {
                           addSuffix: true,
                         })}
-                      </span>
+                      </span> */}
+                      <span>
+  {(() => {
+    const date = new Date(session.createdAt);
+    return isValid(date)
+      ? formatDistanceToNow(date, { addSuffix: true })
+      : "Just now";
+  })()}
+</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4" />

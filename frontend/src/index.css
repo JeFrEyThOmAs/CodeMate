@@ -1,4 +1,53 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
-    themes : all;
+  themes: dark;
+}
+
+@theme {
+  --color-primary: #3b82f6; /* Blue 500 */
+  --color-primary-content: #ffffff;
+  --color-secondary: #8b5cf6; /* Violet 500 */
+  --color-secondary-content: #ffffff;
+  --color-accent: #10b981; /* Emerald 500 */
+  --color-accent-content: #ffffff;
+  
+  --color-base-100: #0f172a; /* Slate 900 */
+  --color-base-200: #1e293b; /* Slate 800 */
+  --color-base-300: #334155; /* Slate 700 */
+  --color-base-content: #f8fafc; /* Slate 50 */
+}
+
+@layer utilities {
+  .solid-panel {
+    @apply bg-base-200 border border-base-300 rounded-2xl shadow-xl;
+  }
+  
+  .solid-card {
+    @apply bg-base-100 border-2 border-base-300 hover:border-primary/50 transition-all duration-200 rounded-xl shadow-md hover:shadow-lg;
+  }
+
+  .btn-high-vis {
+    @apply px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold rounded-xl shadow-lg hover:shadow-primary/30 transition-all duration-200 active:scale-95 flex items-center gap-2;
+  }
+
+  .btn-secondary-vis {
+    @apply px-6 py-3 bg-base-300 hover:bg-base-content hover:text-base-100 text-base-content font-bold rounded-xl shadow transition-all duration-200 active:scale-95 flex items-center gap-2;
+  }
+}
+
+body {
+  @apply bg-base-100 text-base-content antialiased selection:bg-primary/30;
+}
+
+/* Cleaner Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: theme('colors.base-100');
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-base-300 rounded-full hover:bg-primary/50 transition-colors;
 }

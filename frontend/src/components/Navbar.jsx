@@ -17,14 +17,12 @@ function Navbar() {
           to="/"
           className="group flex items-center gap-3 hover:scale-105 transition-transform duration-200"
         >
-          <div className="size-10 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent flex items-center justify-center shadow-lg ">
+          {/* <div className="size-10 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent flex items-center justify-center shadow-lg ">
             <SparklesIcon className="size-6 text-white" />
-          </div>
+          </div> */}
 
           <div className="flex flex-col">
-            <span className="font-black text-xl bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-mono tracking-wider">
-              CodeMate
-            </span>
+          <span className="font-bold text-2xl tracking-tight text-white group-hover:text-primary transition-colors">CodeX</span>
             <span className="text-xs text-base-content/60 font-medium -mt-1">Code Together</span>
           </div>
         </Link>
@@ -34,10 +32,9 @@ function Navbar() {
           <Link
             to={"/problems"}
             className={`px-4 py-2.5 rounded-lg transition-all duration-200 
-              ${
-                isActive("/problems")
-                  ? "bg-primary text-primary-content"
-                  : "hover:bg-base-200 text-base-content/70 hover:text-base-content"
+              ${isActive("/problems")
+                ? "bg-primary text-primary-content"
+                : "hover:bg-base-200 text-base-content/70 hover:text-base-content"
               }
               
               `}
@@ -52,10 +49,9 @@ function Navbar() {
           <Link
             to={"/dashboard"}
             className={`px-4 py-2.5 rounded-lg transition-all duration-200 
-              ${
-                isActive("/dashboard")
-                  ? "bg-primary text-primary-content"
-                  : "hover:bg-base-200 text-base-content/70 hover:text-base-content"
+              ${isActive("/dashboard")
+                ? "bg-primary text-primary-content"
+                : "hover:bg-base-200 text-base-content/70 hover:text-base-content"
               }
               
               `}

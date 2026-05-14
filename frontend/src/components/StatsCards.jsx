@@ -1,34 +1,45 @@
-import { TrophyIcon, UsersIcon } from "lucide-react";
+import { DatabaseIcon, TerminalIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 function StatsCards({ activeSessionsCount, recentSessionsCount }) {
   return (
-    <div className="lg:col-span-1 grid grid-cols-1 gap-6">
+    <div className="flex flex-col gap-6">
       {/* Active Count */}
-      <div className="card bg-base-100 border-2 border-primary/20 hover:border-primary/40">
-        <div className="card-body">
-          <div className="flex items-center justify-between mb-3">
-            <div className="p-3 bg-primary/10 rounded-2xl">
-              <UsersIcon className="w-7 h-7 text-primary" />
-            </div>
-            <div className="badge badge-primary">Live</div>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="solid-card p-6 flex items-center justify-between relative overflow-hidden group border-primary/20 hover:border-primary/50"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none" />
+        <div className="relative z-10">
+          <div className="text-sm font-bold text-base-content/60 uppercase tracking-widest mb-1 flex items-center gap-2">
+            <div className="size-2 rounded-full bg-primary animate-pulse" />
+            Live Nodes
           </div>
-          <div className="text-4xl font-black mb-1">{activeSessionsCount}</div>
-          <div className="text-sm opacity-60">Active Sessions</div>
+          <div className="text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(59,130,246,0.4)]">{activeSessionsCount}</div>
         </div>
-      </div>
+        <div className="size-16 bg-primary/10 border border-primary/20 rounded-2xl flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+          <TerminalIcon className="size-8 text-primary" />
+        </div>
+      </motion.div>
 
       {/* Recent Count */}
-      <div className="card bg-base-100 border-2 border-secondary/20 hover:border-secondary/40">
-        <div className="card-body">
-          <div className="flex items-center justify-between mb-3">
-            <div className="p-3 bg-secondary/10 rounded-2xl">
-              <TrophyIcon className="w-7 h-7 text-secondary" />
-            </div>
-          </div>
-          <div className="text-4xl font-black mb-1">{recentSessionsCount}</div>
-          <div className="text-sm opacity-60">Total Sessions</div>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="solid-card p-6 flex items-center justify-between relative overflow-hidden group border-secondary/20 hover:border-secondary/50"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 to-transparent pointer-events-none" />
+        <div className="relative z-10">
+          <div className="text-sm font-bold text-base-content/60 uppercase tracking-widest mb-1">Execution Log</div>
+          <div className="text-5xl font-black text-secondary drop-shadow-[0_0_15px_rgba(139,92,246,0.4)]">{recentSessionsCount}</div>
         </div>
-      </div>
+        <div className="size-16 bg-secondary/10 border border-secondary/20 rounded-2xl flex items-center justify-center relative z-10 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+          <DatabaseIcon className="size-8 text-secondary" />
+        </div>
+      </motion.div>
     </div>
   );
 }

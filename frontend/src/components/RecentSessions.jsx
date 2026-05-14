@@ -1,111 +1,102 @@
-import { Code2, Clock, Users, Trophy, Loader } from "lucide-react";
+import { Code2Icon, ClockIcon, UsersIcon, TrophyIcon, LoaderIcon, DatabaseIcon } from "lucide-react";
 import { getDifficultyBadgeClass } from "../lib/utils";
-import { formatDistanceToNow, isValid } from "date-fns";
-
+import { formatDistanceToNow } from "date-fns";
+import { motion } from "framer-motion";
 
 function RecentSessions({ sessions, isLoading }) {
   return (
-    <div className="card bg-base-100 border-2 border-accent/20 hover:border-accent/30 mt-8">
-      <div className="card-body">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-gradient-to-br from-accent to-secondary rounded-xl">
-            <Clock className="w-5 h-5 text-white" />
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="solid-panel mt-8 overflow-hidden relative"
+    >
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgxOHYxOEgxem0xIDE3aDE2VjJIMnoiIGZpbGw9IiMzMjg0ZjYiIGZpbGwtb3BhY2l0eT0iMC4wMiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+')] pointer-events-none" />
+      <div className="p-6 md:p-8 relative z-10">
+        <div className="flex items-center gap-4 mb-8 pb-6 border-b border-base-300">
+          <div className="size-12 rounded-xl bg-secondary/10 border border-secondary/30 flex items-center justify-center shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+            <DatabaseIcon className="size-6 text-secondary" />
           </div>
-          <h2 className="text-2xl font-black">Your Past Sessions</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight">Execution History</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {isLoading ? (
             <div className="col-span-full flex items-center justify-center py-20">
-              <Loader className="w-10 h-10 animate-spin text-primary" />
+              <LoaderIcon className="size-10 animate-spin text-secondary" />
             </div>
           ) : sessions.length > 0 ? (
-            sessions.map((session) => (
-              <div
-                key={session._id}
-                className={`card relative ${
-                  session.status === "active"
-                    ? "bg-success/10 border-success/30 hover:border-success/60"
-                    : "bg-base-200 border-base-300 hover:border-primary/30"
-                }`}
+            sessions.map((session, i) => (
+              <motion.div 
+                key={session._id} 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
+                className="solid-card p-5 relative overflow-hidden group border-base-300 hover:border-secondary/50"
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                
                 {session.status === "active" && (
-                  <div className="absolute top-3 right-3">
-                    <div className="badge badge-success gap-1">
-                      <div className="w-1.5 h-1.5 bg-success rounded-full animate-pulse" />
+                  <div className="absolute top-3 right-3 z-10">
+                    <div className="px-2 py-1 bg-success/10 border border-success/20 text-success text-[10px] font-bold rounded flex items-center gap-1.5 shadow-[0_0_5px_rgba(34,197,94,0.2)]">
+                      <div className="size-1.5 bg-success rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
                       ACTIVE
                     </div>
                   </div>
                 )}
 
-                <div className="card-body p-5">
-                  <div className="flex items-start gap-3 mb-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        session.status === "active"
-                          ? "bg-gradient-to-br from-success to-success/70"
-                          : "bg-gradient-to-br from-primary to-secondary"
-                      }`}
-                    >
-                      <Code2 className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-bold text-base mb-1 truncate">{session.problem}</h3>
-                      <span
-                        className={`badge badge-sm ${getDifficultyBadgeClass(session.difficulty)}`}
-                      >
-                        {session.difficulty}
-                      </span>
-                    </div>
+                <div className="flex items-start gap-4 mb-4 relative z-10">
+                  <div className="size-10 rounded-lg bg-base-300 border border-base-100 flex items-center justify-center">
+                    <Code2Icon className="size-5 text-secondary" />
                   </div>
-
-                  <div className="space-y-2 text-sm opacity-80 mb-4">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4" />
-                      {/* <span>
-                        {formatDistanceToNow(new Date(session.createdAt), {
-                          addSuffix: true,
-                        })}
-                      </span> */}
-                      <span>
-  {(() => {
-    const date = new Date(session.createdAt);
-    return isValid(date)
-      ? formatDistanceToNow(date, { addSuffix: true })
-      : "Just now";
-  })()}
-</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      <span>
-                        {session.participant ? "2" : "1"} participant
-                        {session.participant ? "s" : ""}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between pt-3 border-t border-base-300">
-                    <span className="text-xs font-semibold opacity-80 uppercase">Completed</span>
-                    <span className="text-xs opacity-40">
-                      {new Date(session.updatedAt).toLocaleDateString()}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-white mb-1 truncate">{session.problem}</h3>
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase border ${getDifficultyBadgeClass(session.difficulty)}`}>
+                      {session.difficulty}
                     </span>
                   </div>
                 </div>
-              </div>
+
+                <div className="space-y-2 text-sm font-medium text-base-content/60 mb-4 relative z-10">
+                  <div className="flex items-center gap-2">
+                    <ClockIcon className="size-4" />
+                    <span>
+                      {(() => {
+                        const date = new Date(session.createdAt);
+                        return isNaN(date.getTime()) ? "Unknown" : formatDistanceToNow(date, { addSuffix: true });
+                      })()}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <UsersIcon className="size-4" />
+                    <span>{session.participant ? "2 nodes" : "1 node"}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-4 border-t border-base-300 relative z-10">
+                  <span className="text-[10px] font-bold tracking-wider text-base-content/40 uppercase">
+                    Status Check
+                  </span>
+                  <span className="text-xs font-mono font-bold text-base-content/70">
+                    {new Date(session.updatedAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </motion.div>
             ))
           ) : (
-            <div className="col-span-full text-center py-16">
-              <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-accent/20 to-secondary/20 rounded-3xl flex items-center justify-center">
-                <Trophy className="w-10 h-10 text-accent/50" />
+            <div className="col-span-full flex flex-col items-center justify-center py-16 px-4 text-center">
+              <div className="size-20 mb-6 bg-base-300 border border-base-100 rounded-full flex items-center justify-center relative shadow-[0_0_20px_rgba(0,0,0,0.5)_inset]">
+                <TrophyIcon className="size-10 text-base-content/40" />
               </div>
-              <p className="text-lg font-semibold opacity-70 mb-1">No sessions yet</p>
-              <p className="text-sm opacity-50">Start your coding journey today!</p>
+              <p className="text-xl font-black text-white mb-2 tracking-tight">No Records Found</p>
+              <p className="text-base-content/60 font-medium">
+                Execute your first problem to populate the history logs.
+              </p>
             </div>
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

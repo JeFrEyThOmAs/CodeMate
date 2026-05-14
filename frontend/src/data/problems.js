@@ -339,6 +339,307 @@ export const PROBLEMS = {
         java: "49\n1",
       },
     },
+      "move-zeroes": {
+        "id": "move-zeroes",
+        "title": "Move Zeroes",
+        "difficulty": "Easy",
+        "category": "Array • Two Pointers",
+        "description": {
+          "text": "Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.",
+          "notes": [
+            "You must do this in-place without making a copy of the array.",
+            "Minimize the total number of operations."
+          ]
+        },
+        "examples": [
+          {
+            "input": "nums = [0,1,0,3,12]",
+            "output": "[1,3,12,0,0]"
+          },
+          {
+            "input": "nums = [0]",
+            "output": "[0]"
+          }
+        ],
+        "constraints": [
+          "1 ≤ nums.length ≤ 10⁴",
+          "-2³¹ ≤ nums[i] ≤ 2³¹ - 1"
+        ],
+        "starterCode": {
+          "javascript": "function moveZeroes(nums) {\n  // Write your solution here\n}\n\nlet arr = [0,1,0,3,12];\nmoveZeroes(arr);\nconsole.log(arr); // Expected: [1,3,12,0,0]",
+          "python": "def moveZeroes(nums):\n    pass\n\narr = [0,1,0,3,12]\nmoveZeroes(arr)\nprint(arr)",
+          "java": "class Solution {\n    public static void moveZeroes(int[] nums) {\n        // Write your solution here\n    }\n}"
+        }
+      },
+    
+      "best-time-to-buy-sell-stock": {
+        "id": "best-time-to-buy-sell-stock",
+        "title": "Best Time to Buy and Sell Stock",
+        "difficulty": "Easy",
+        "category": "Array • Greedy",
+        "description": {
+          "text": "You are given an array prices where prices[i] is the price of a stock on the ith day. Return the maximum profit you can achieve.",
+          "notes": [
+            "You may complete at most one transaction.",
+            "You must buy before you sell."
+          ]
+        },
+        "examples": [
+          {
+            "input": "prices = [7,1,5,3,6,4]",
+            "output": "5"
+          },
+          {
+            "input": "prices = [7,6,4,3,1]",
+            "output": "0"
+          }
+        ],
+        "constraints": [
+          "1 ≤ prices.length ≤ 10⁵",
+          "0 ≤ prices[i] ≤ 10⁴"
+        ],
+        "starterCode": {
+          "javascript": "function maxProfit(prices) {\n  // Write your solution here\n}\n\nconsole.log(maxProfit([7,1,5,3,6,4])); // Expected: 5",
+          "python": "def maxProfit(prices):\n    pass\n\nprint(maxProfit([7,1,5,3,6,4]))",
+          "java": "class Solution {\n    public static int maxProfit(int[] prices) {\n        return 0;\n    }\n}"
+        }
+      },
+    
+      "longest-substring-without-repeating": {
+        "id": "longest-substring-without-repeating",
+        "title": "Longest Substring Without Repeating Characters",
+        "difficulty": "Medium",
+        "category": "String • Sliding Window",
+        "description": {
+          "text": "Given a string s, find the length of the longest substring without repeating characters.",
+          "notes": [
+            "Substring must be contiguous."
+          ]
+        },
+        "examples": [
+          {
+            "input": "s = \"abcabcbb\"",
+            "output": "3"
+          },
+          {
+            "input": "s = \"bbbbb\"",
+            "output": "1"
+          }
+        ],
+        "constraints": [
+          "0 ≤ s.length ≤ 5 * 10⁴",
+          "s consists of English letters, digits, symbols and spaces"
+        ],
+        "starterCode": {
+          "javascript": "function lengthOfLongestSubstring(s) {\n  // Write your solution here\n}\n\nconsole.log(lengthOfLongestSubstring(\"abcabcbb\")); // Expected: 3",
+          "python": "def lengthOfLongestSubstring(s):\n    pass\n\nprint(lengthOfLongestSubstring(\"abcabcbb\"))",
+          "java": "class Solution {\n    public static int lengthOfLongestSubstring(String s) {\n        return 0;\n    }\n}"
+        }
+      },
+    
+      "product-of-array-except-self": {
+        "id": "product-of-array-except-self",
+        "title": "Product of Array Except Self",
+        "difficulty": "Medium",
+        "category": "Array • Prefix Sum",
+        "description": {
+          "text": "Given an integer array nums, return an array answer such that answer[i] is the product of all elements of nums except nums[i].",
+          "notes": [
+            "You must solve it without division.",
+            "Time complexity O(n)."
+          ]
+        },
+        "examples": [
+          {
+            "input": "nums = [1,2,3,4]",
+            "output": "[24,12,8,6]"
+          }
+        ],
+        "constraints": [
+          "2 ≤ nums.length ≤ 10⁵",
+          "-30 ≤ nums[i] ≤ 30"
+        ],
+        "starterCode": {
+          "javascript": "function productExceptSelf(nums) {\n  // Write your solution here\n}\n\nconsole.log(productExceptSelf([1,2,3,4]));",
+          "python": "def productExceptSelf(nums):\n    pass\n\nprint(productExceptSelf([1,2,3,4]))",
+          "java": "class Solution {\n    public static int[] productExceptSelf(int[] nums) {\n        return new int[0];\n    }\n}"
+        }
+      },
+    
+      "merge-intervals": {
+        "id": "merge-intervals",
+        "title": "Merge Intervals",
+        "difficulty": "Medium",
+        "category": "Array • Sorting",
+        "description": {
+          "text": "Given an array of intervals, merge all overlapping intervals.",
+          "notes": [
+            "Intervals are represented as [start, end]."
+          ]
+        },
+        "examples": [
+          {
+            "input": "intervals = [[1,3],[2,6],[8,10],[15,18]]",
+            "output": "[[1,6],[8,10],[15,18]]"
+          }
+        ],
+        "constraints": [
+          "1 ≤ intervals.length ≤ 10⁴",
+          "intervals[i].length == 2"
+        ],
+        "starterCode": {
+          "javascript": "function merge(intervals) {\n  // Write your solution here\n}\n\nconsole.log(merge([[1,3],[2,6],[8,10],[15,18]]));",
+          "python": "def merge(intervals):\n    pass\n\nprint(merge([[1,3],[2,6],[8,10],[15,18]]))",
+          "java": "class Solution {\n    public static int[][] merge(int[][] intervals) {\n        return new int[0][0];\n    }\n}"
+        }
+      },
+        "contains-duplicate": {
+          "id": "contains-duplicate",
+          "title": "Contains Duplicate",
+          "difficulty": "Easy",
+          "category": "Array • Hash Table",
+          "description": {
+            "text": "Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.",
+            "notes": []
+          },
+          "examples": [
+            {
+              "input": "nums = [1,2,3,1]",
+              "output": "true"
+            },
+            {
+              "input": "nums = [1,2,3,4]",
+              "output": "false"
+            }
+          ],
+          "constraints": [
+            "1 ≤ nums.length ≤ 10⁵",
+            "-10⁹ ≤ nums[i] ≤ 10⁹"
+          ],
+          "starterCode": {
+            "javascript": "function containsDuplicate(nums) {\n  // Write your solution here\n}\n\nconsole.log(containsDuplicate([1,2,3,1]));",
+            "python": "def containsDuplicate(nums):\n    pass\n\nprint(containsDuplicate([1,2,3,1]))",
+            "java": "class Solution {\n    public static boolean containsDuplicate(int[] nums) {\n        return false;\n    }\n}"
+          }
+        },
+      
+        "valid-anagram": {
+          "id": "valid-anagram",
+          "title": "Valid Anagram",
+          "difficulty": "Easy",
+          "category": "String • Hash Table",
+          "description": {
+            "text": "Given two strings s and t, return true if t is an anagram of s, and false otherwise.",
+            "notes": []
+          },
+          "examples": [
+            {
+              "input": "s = \"anagram\", t = \"nagaram\"",
+              "output": "true"
+            },
+            {
+              "input": "s = \"rat\", t = \"car\"",
+              "output": "false"
+            }
+          ],
+          "constraints": [
+            "1 ≤ s.length, t.length ≤ 5 * 10⁴",
+            "s and t consist of lowercase English letters"
+          ],
+          "starterCode": {
+            "javascript": "function isAnagram(s, t) {\n  // Write your solution here\n}\n\nconsole.log(isAnagram(\"anagram\", \"nagaram\"));",
+            "python": "def isAnagram(s, t):\n    pass\n\nprint(isAnagram(\"anagram\", \"nagaram\"))",
+            "java": "class Solution {\n    public static boolean isAnagram(String s, String t) {\n        return false;\n    }\n}"
+          }
+        },
+      
+        "two-sum-ii": {
+          "id": "two-sum-ii",
+          "title": "Two Sum II - Input Array Is Sorted",
+          "difficulty": "Medium",
+          "category": "Array • Two Pointers",
+          "description": {
+            "text": "Given a 1-indexed array of integers numbers that is already sorted, find two numbers such that they add up to a specific target.",
+            "notes": [
+              "You may not use the same element twice.",
+              "Return the indices of the two numbers added by 1."
+            ]
+          },
+          "examples": [
+            {
+              "input": "numbers = [2,7,11,15], target = 9",
+              "output": "[1,2]"
+            }
+          ],
+          "constraints": [
+            "2 ≤ numbers.length ≤ 3 * 10⁴",
+            "-1000 ≤ numbers[i] ≤ 1000"
+          ],
+          "starterCode": {
+            "javascript": "function twoSum(numbers, target) {\n  // Write your solution here\n}\n\nconsole.log(twoSum([2,7,11,15], 9));",
+            "python": "def twoSum(numbers, target):\n    pass\n\nprint(twoSum([2,7,11,15], 9))",
+            "java": "class Solution {\n    public static int[] twoSum(int[] numbers, int target) {\n        return new int[0];\n    }\n}"
+          }
+        },
+      
+        "group-anagrams": {
+          "id": "group-anagrams",
+          "title": "Group Anagrams",
+          "difficulty": "Medium",
+          "category": "String • Hash Table",
+          "description": {
+            "text": "Given an array of strings strs, group the anagrams together.",
+            "notes": [
+              "The order of output does not matter."
+            ]
+          },
+          "examples": [
+            {
+              "input": "strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+              "output": "[[\"eat\",\"tea\",\"ate\"],[\"tan\",\"nat\"],[\"bat\"]]"
+            }
+          ],
+          "constraints": [
+            "1 ≤ strs.length ≤ 10⁴",
+            "0 ≤ strs[i].length ≤ 100"
+          ],
+          "starterCode": {
+            "javascript": "function groupAnagrams(strs) {\n  // Write your solution here\n}\n\nconsole.log(groupAnagrams([\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]));",
+            "python": "def groupAnagrams(strs):\n    pass\n\nprint(groupAnagrams([\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]))",
+            "java": "class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n        return new ArrayList<>();\n    }\n}"
+          }
+        },
+      
+        "longest-consecutive-sequence": {
+          "id": "longest-consecutive-sequence",
+          "title": "Longest Consecutive Sequence",
+          "difficulty": "Medium",
+          "category": "Array • Hash Set",
+          "description": {
+            "text": "Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.",
+            "notes": [
+              "You must write an algorithm that runs in O(n) time."
+            ]
+          },
+          "examples": [
+            {
+              "input": "nums = [100,4,200,1,3,2]",
+              "output": "4"
+            }
+          ],
+          "constraints": [
+            "0 ≤ nums.length ≤ 10⁵",
+            "-10⁹ ≤ nums[i] ≤ 10⁹"
+          ],
+          "starterCode": {
+            "javascript": "function longestConsecutive(nums) {\n  // Write your solution here\n}\n\nconsole.log(longestConsecutive([100,4,200,1,3,2]));",
+            "python": "def longestConsecutive(nums):\n    pass\n\nprint(longestConsecutive([100,4,200,1,3,2]))",
+            "java": "class Solution {\n    public static int longestConsecutive(int[] nums) {\n        return 0;\n    }\n}"
+          }
+        }
+      
+      
+    
   };
   
   export const LANGUAGE_CONFIG = {
